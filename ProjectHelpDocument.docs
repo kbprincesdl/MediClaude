@@ -1,0 +1,165 @@
+# 🏥 MediRoute: Multi-Agent AI Triage System
+
+## 📌 Overview
+
+**MediRoute** is a multi-agent AI system that simulates a medical triage workflow. It analyzes patient symptoms, determines severity, routes cases, and provides recommendations using a combination of rule-based logic and Retrieval-Augmented Generation (RAG).
+
+---
+
+## 🚀 Features
+
+* 🤖 Multi-agent architecture
+* 🧠 Severity detection (LOW / HIGH / CRITICAL)
+* 🔀 Intelligent routing (self-care / doctor / emergency)
+* 🛠 Tool integration (hospital lookup)
+* 📚 Basic RAG (Retrieval-Augmented Generation)
+* 🧾 Memory support (conversation history)
+* ⚡ FastAPI backend for easy testing
+
+---
+
+## 📁 Project Structure
+
+```
+triage_assistant/
+├── app.py          # Step 11: LangGraph Assembly + FastAPI endpoints
+├── agents.py       # Step 2–5: Severity Agent, Routing, Tools
+├── rag.py          # Step 6 & 10: Medical RAG + Chunking + Retriever
+├── tools.py        # Step 7–9: Recommendation, Supervisor, Memory
+├── state.py        # Step 1: Shared TriageState definition
+├── requirements.txt
+└── protocols/
+    └── medical_guidelines.pdf   # Optional medical reference
+```
+
+---
+
+## ⚙️ How It Works
+
+### 🔄 Workflow
+
+1. User submits symptoms
+2. Severity Agent evaluates risk
+3. Routing logic determines next step
+4. Tool node executes (if critical)
+5. RAG provides contextual medical advice
+6. Recommendation agent finalizes output
+7. Memory stores interaction
+8. Supervisor logs system decision
+
+---
+
+## 🧠 Agents Breakdown
+
+| Step | Component            | Description                       |
+| ---- | -------------------- | --------------------------------- |
+| 1    | State                | Shared data structure             |
+| 2    | Severity Agent       | Detects severity                  |
+| 3    | Routing Logic        | Decides next action               |
+| 4–5  | Tool Node            | Executes external tools           |
+| 6    | Medical RAG          | Provides knowledge-based response |
+| 7    | Recommendation Agent | Final advice                      |
+| 8    | Supervisor Agent     | Logs/monitors                     |
+| 9    | Memory               | Stores history                    |
+| 10   | Chunk + Retriever    | RAG foundation                    |
+| 11   | Graph Assembly       | Connects everything               |
+
+---
+
+## 📦 Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+Or manually:
+
+```bash
+pip install fastapi uvicorn langchain chromadb pypdf
+```
+
+---
+
+## ▶️ Running the Application
+
+```Terminal
+python -m uvicorn app:app --reload
+```
+
+---
+
+## 🌐 API Documentation
+
+Open in browser:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+---
+
+## 🧪 Example API Request
+
+**POST /triage**
+
+```json
+{
+  "patient_input": "I have chest pain and breathing difficulty"
+}
+```
+
+---
+
+## 📤 Example Response
+
+```json
+{
+  "severity": "CRITICAL",
+  "route": "emergency",
+  "recommendation": "Nearest hospital: City Care Hospital, 2km away",
+  "history": ["I have chest pain and breathing difficulty"]
+}
+```
+
+---
+
+## ⚠️ Common Errors
+
+| Error                     | Cause              | Fix                      |
+| ------------------------- | ------------------ | ------------------------ |
+| 422 Unprocessable Content | Wrong JSON format  | Use correct request body |
+| Connection refused        | Server not running | Start FastAPI            |
+| Module not found          | Missing dependency | Install requirements     |
+
+---
+
+## 📈 Future Enhancements
+
+* 🔗 Integrate Ollama / LLM models
+* 🧠 Real vector DB (ChromaDB integration)
+* 📄 PDF-based RAG using medical guidelines
+* 🎨 Frontend dashboard (Streamlit)
+* 🐳 Docker support
+* 🔄 n8n workflow automation
+
+---
+
+## 🎯 Tech Stack
+
+* Python
+* FastAPI
+* LangChain / LangGraph
+* ChromaDB (planned)
+
+---
+
+## ⚠️ Disclaimer
+
+This project is for **educational purposes only**.
+It is **NOT a medical diagnosis tool**.
+
+---
+
+## 👨‍💻 Author
+
+Built as a learning project for **Agentic AI + RAG Systems**
